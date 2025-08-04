@@ -1,12 +1,17 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int i = 0;
-        for (int n : nums) {
-            if (i < 2 || n > nums[i - 2]) {  // Allow first 2 occurrences
-                nums[i++] = n;
+        if (nums.size() <= 2) 
+            return nums.size(); // Return directly if size is <= 2
+
+        int count = 2; // Start from index 2 since first 2 elements are always valid
+
+        for (int i = 2; i < nums.size(); i++) {
+            if (nums[i] > nums[count - 2]) { // Compare with element 2 steps back
+                nums[count] = nums[i];      // Place current element at 'count'
+                count++;
             }
         }
-        return i;
+        return count; // Length of modified array
     }
 };
