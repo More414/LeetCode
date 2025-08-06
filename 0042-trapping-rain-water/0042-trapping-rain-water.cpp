@@ -8,15 +8,15 @@ public:
         vector<int> leftmax(n), rightmax(n);
 
         // Fill leftmax
-        leftmax[0] = height[0];
+        leftmax[0] = 0;
         for (int i = 1; i < n; i++) {
-            leftmax[i] = max(leftmax[i - 1], height[i]);
+            leftmax[i] = max(leftmax[i-1], height[i-1]);
         }
 
         // Fill rightmax
-        rightmax[n - 1] = height[n - 1];
+        rightmax[n - 1] = 0;
         for (int i = n - 2; i >= 0; i--) {
-            rightmax[i] = max(rightmax[i + 1], height[i]);
+            rightmax[i] = max(rightmax[i + 1], height[i+1]);
         }
 
         // Calculate trapped water
