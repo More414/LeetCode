@@ -10,8 +10,9 @@
  */
 class Solution {
 public:
+    // SORT the two linked lists  for appling to all two lists
     ListNode *MergeTwoList(ListNode *l1, ListNode *l2){
-        if(!l1)return l2;
+        if(!l1)return l2;// this is for only one list present
         if(!l2)return l1;
 
         if(l1->val <= l2->val){
@@ -25,18 +26,21 @@ public:
         return NULL;
     }
 
+
+    // appling the recurtion to the given vector list 
     ListNode *partitionLinkedList(int start, int end, vector<ListNode*>& lists){
 
         if(start>end) return NULL;
 
-        if(start==end) return lists[start];
+        if(start==end) return lists[start]; // if only one list present then use this case
 
         int mid = start+(end-start)/2;
 
-        ListNode *L1= partitionLinkedList(start, mid, lists);
-        ListNode *L2= partitionLinkedList(mid+1, end, lists);
+        ListNode *L1= partitionLinkedList(start, mid, lists);// left half of the linked list 
 
-        return MergeTwoList(L1, L2);
+        ListNode *L2= partitionLinkedList(mid+1, end, lists);// right half of the linked list
+
+        return MergeTwoList(L1, L2); //sorting the list 
 
     }
 
